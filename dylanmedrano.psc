@@ -1,4 +1,4 @@
-Algoritmo Dylanmedrano
+Algoritmo jasas
 	opc=1
 	cant=0
 	definir nombre Como Caracter
@@ -115,3 +115,4 @@ FinSubProceso
 
 
 	
+
