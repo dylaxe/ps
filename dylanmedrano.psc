@@ -43,7 +43,6 @@ Algoritmo Dylanmedrano
 				Leer factura[x]
 				limpiarp
 			2: 
-				recaudacion=0
 				para x=1 Hasta cant
 					recaudacion=factura[x]+recaudacion
 				FinPara
@@ -111,6 +110,7 @@ SubProceso limpiarp
 	Esperar Tecla
 	Limpiar Pantalla
 FinSubProceso
+
 
 
 
