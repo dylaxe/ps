@@ -1,7 +1,7 @@
 Algoritmo jasas
 	opc=1
 	cant=0
-	definir nombre Como Caracter
+	Definir nombre Como Caracter
 	Definir num Como Real
 	Dimension cliente[100]
 	Dimension factura[100]
@@ -13,92 +13,162 @@ Algoritmo jasas
 	contador=0
 	recaudacion=0
 	recaudacion2=0
-	Mostrar "ingrese el numero de clientes:"
-	leer cant
-	para x=1 hasta cant
-		Mostrar "nombre:"
+	
+	Mostrar "Ingrese el numero de clientes:"
+	Leer cant
+	
+	Para x=1 Hasta cant Hacer
+		Mostrar "Cliente ", x
+		Mostrar "Nombre:"
 		Leer cliente[x]
-		Mostrar "factura:"
+		Mostrar "Factura:"
 		Leer factura[x]
 	FinPara
+	
 	limpiarp
+	
 	Mientras opc<>0 Hacer
-		Mostrar "menu de opciones"
-		Mostrar "=================="
-		Mostrar "1 Agregare nueva venta"
-		Mostrar "2 Recaudacin total de facturas"
-		mostrar "3 modificar importe de las facturas"
-		Mostrar "4 mostrar listado completo"
-		Mostrar "5 facturas de un cliente"
-		Mostrar "6 facturas superiores al promedio"
-		Mostrar "7 eliminar venta"
+		Mostrar "===== MENU DE OPCIONES ====="
+		Mostrar "1. Agregar nueva venta"
+		Mostrar "2. Recaudacion total de facturas"
+		Mostrar "3. Modificar importe de las facturas"
+		Mostrar "4. Mostrar listado completo"
+		Mostrar "5. Facturas de un cliente"
+		Mostrar "6. Facturas superiores al promedio"
+		Mostrar "7. Eliminar venta"
+		Mostrar "0. Salir"
+		Mostrar "============================"
+		Mostrar "Seleccione una opcion:"
 		Leer opc
 		limpiarp
+		
 		Segun opc Hacer
-			1:
+			1:  
 				cant=cant+1
-				Mostrar "nombre:"
-				Leer cliente[x]
-				Mostrar "factura:"
-				Leer factura[x]
+				Mostrar "=== AGREGAR NUEVA VENTA ==="
+				Mostrar "Nombre del cliente:"
+				Leer cliente[cant]
+				Mostrar "Monto de factura:"
+				Leer factura[cant]
+				Mostrar "Venta agregada exitosamente!"
 				limpiarp
+				
 			2: 
-				para x=1 Hasta cant
-					recaudacion=factura[x]+recaudacion
-				FinPara
-				Mostrar "La recaudacion total es de: ", recaudacion
-			3: 
-				Para x=1 Hasta cant
-					Mostrar x,"- " , cliente[x]
-					Mostrar "factura ", factura[x]
-				FinPara
-				Mostrar "ingrese numero de cliente para modificar factura"
-				Leer modificar
-				Mostrar "Modifique: "
-				Leer factura[modificar]
-				limpiarp
-			4:
-				Para x=1 Hasta cant
-					Mostrar x,"- " , cliente[x]
-					Mostrar "factura ", factura[x]
-				FinPara
-				limpiarp
-			5:
-				Mostrar "ingrese numero de cliente:"
-				Leer elegir
-				Mostrar "Nombre: ", cliente[elegir]
-				Mostrar "Factura: ", factura[elegir]
-				limpiarp
-			6:
-				para x=1 Hasta cant
-					recaudacion2=factura[X]+recaudacion2
-				FinPara
-				promedio=recaudacion2/cant
+				recaudacion=0
 				Para x=1 Hasta cant Hacer
-					si factura[x] > promedio Entonces
-						contador=contador+1
-						superapromedio[contador]=cliente[x]
-					FinSi
+					recaudacion=recaudacion+factura[x]
 				FinPara
-				Mostrar "superapromedio: "
-				Para x=1 Hasta contador Hacer
-					Mostrar x, "- " , cliente[x]
-					Mostrar "factura ", factura[x]
-				FinPara
+				Mostrar "=== RECAUDACION TOTAL ==="
+				Mostrar "La recaudacion total es de: $", recaudacion
 				limpiarp
-			7:
-				Para x=1 Hasta cant
-					Mostrar x,"- " , cliente[x]
-					Mostrar "factura ", factura[x]
+				
+			3:  
+				Mostrar "=== MODIFICAR FACTURA ==="
+				Para x=1 Hasta cant Hacer
+					Mostrar x, "- ", cliente[x], " - Factura: $", factura[x]
 				FinPara
-				Mostrar "ingrese numero de cliente a eliminar"
-				leer elegir
-				Para x=elegir Hasta cant Hacer
-					cliente[x]=cliente[x+1]
-					factura[x]=factura[x+1]
-					superapromedio[x]=superapromedio[x+1]
+				Mostrar ""
+				Mostrar "Ingrese numero de cliente para modificar factura:"
+				Leer modificar
+				
+				Si modificar>=1 Y modificar<=cant Entonces
+					Mostrar "Cliente: ", cliente[modificar]
+					Mostrar "Factura actual: $", factura[modificar]
+					Mostrar "Ingrese nuevo monto:"
+					Leer factura[modificar]
+					Mostrar "Factura modificada exitosamente!"
+				SiNo
+					Mostrar "Numero de cliente invalido!"
+				FinSi
+				limpiarp
+				
+			4: 
+				Mostrar "=== LISTADO COMPLETO ==="
+				Si cant=0 Entonces
+					Mostrar "No hay clientes registrados"
+				SiNo
+					Para x=1 Hasta cant Hacer
+						Mostrar x, "- ", cliente[x], " - Factura: $", factura[x]
+					FinPara
+				FinSi
+				limpiarp
+				
+			5:  
+				Mostrar "=== CONSULTAR CLIENTE ==="
+				Para x=1 Hasta cant Hacer
+					Mostrar x, "- ", cliente[x]
 				FinPara
-				cant=cant-1
+				Mostrar ""
+				Mostrar "Ingrese numero de cliente:"
+				Leer elegir
+				
+				Si elegir>=1 Y elegir<=cant Entonces
+					Mostrar "Nombre: ", cliente[elegir]
+					Mostrar "Factura: $", factura[elegir]
+				SiNo
+					Mostrar "Numero de cliente invalido!"
+				FinSi
+				limpiarp
+				
+			6: 
+				Mostrar "=== FACTURAS SOBRE PROMEDIO ==="
+				
+				Si cant=0 Entonces
+					Mostrar "No hay clientes registrados"
+				SiNo
+					recaudacion2=0
+					Para x=1 Hasta cant Hacer
+						recaudacion2=recaudacion2+factura[x]
+					FinPara
+					promedio=recaudacion2/cant
+					
+					contador=0
+					Para x=1 Hasta cant Hacer
+						Si factura[x] > promedio Entonces
+							contador=contador+1
+							superapromedio[contador]=x  
+						FinSi
+					FinPara
+					Mostrar "Promedio de facturas: $", promedio
+					Mostrar ""
+					Si contador=0 Entonces
+						Mostrar "No hay facturas superiores al promedio"
+					SiNo
+						Mostrar "Clientes con facturas superiores al promedio:"
+						Para x=1 Hasta contador Hacer
+							Mostrar x, "- ", cliente[superapromedio[x]], " - Factura: $", factura[superapromedio[x]]
+						FinPara
+					FinSi
+				FinSi
+				limpiarp
+				
+			7:  
+				Mostrar "=== ELIMINAR VENTA ==="
+				Si cant=0 Entonces
+					Mostrar "No hay clientes registrados"
+				SiNo
+					Para x=1 Hasta cant Hacer
+						Mostrar x, "- ", cliente[x], " - Factura: $", factura[x]
+					FinPara
+					Mostrar ""
+					Mostrar "Ingrese numero de cliente a eliminar:"
+					Leer elegir
+					
+					Si elegir>=1 Y elegir<=cant Entonces
+						Para x=elegir Hasta cant-1 Hacer
+							cliente[x]=cliente[x+1]
+							factura[x]=factura[x+1]
+						FinPara
+						cant=cant-1
+						Mostrar "Cliente eliminado "
+					SiNo
+						Mostrar "Numero de cliente no invalido"
+					FinSi
+				FinSi
+				limpiarp
+				
+			0:  
+				Mostrar "Saliendo..."
 				limpiarp
 		FinSegun
 	FinMientras
@@ -106,13 +176,13 @@ Algoritmo jasas
 FinAlgoritmo
 
 SubProceso limpiarp
-	Mostrar "presione una tecla"
+	Mostrar ""
+	Mostrar "Presione una tecla para continuar..."
 	Esperar Tecla
 	Limpiar Pantalla
 FinSubProceso
 
 
-
-
 	
+
 
