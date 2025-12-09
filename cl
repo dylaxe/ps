@@ -1,4 +1,4 @@
-Algoritmo jasas
+Algoritmo menuventas
 	opc=1
 	cant=0
 	Definir nombre Como Caracter
@@ -184,5 +184,6 @@ FinSubProceso
 
 
 	
+
 
 
